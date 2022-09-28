@@ -6,12 +6,14 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/28 18:02:29 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/28 18:25:23 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/philosophers.h"
+
 int main(int argc, char const *argv[])
 {
-	/* code */
+	output_log(1, 1);
 	return 0;
 }
