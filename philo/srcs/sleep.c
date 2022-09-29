@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sleep.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/29 21:28:46 by takanoraika      ###   ########.fr       */
+/*   Created: 2022/09/29 21:36:37 by takanoraika       #+#    #+#             */
+/*   Updated: 2022/09/29 21:36:39 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
-
-int main(int ac, char *av[])
-{
-	t_rule		rule;
-
-	if (ac != 5 && ac != 6)
-		return (-1);
-	if (rule_init(ac, av, &rule) == -1)
-		return (-1);
-	if (philo_life(rule) == -1)
-		return (-1);
-	return (0);
-}

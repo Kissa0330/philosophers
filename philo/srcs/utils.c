@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:25 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/29 11:21:02 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/29 20:43:35 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void output_log(int type, int ph_num)
 {
 	struct timeval tv;
+
 	gettimeofday(&tv, NULL);
 	if (type == 1)
 		printf("%ld%d %d has taken a fork\n",tv.tv_sec, tv.tv_usec / 1000, ph_num);

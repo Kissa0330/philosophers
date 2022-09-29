@@ -8,7 +8,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
