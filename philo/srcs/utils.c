@@ -6,11 +6,11 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:25 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/28 23:02:50 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/29 11:21:02 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosophers.h"
+#include "../philosophers.h"
 
 void output_log(int type, int ph_num)
 {
