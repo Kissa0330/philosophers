@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/29 21:28:46 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/29 22:12:27 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 int main(int ac, char *av[])
 {
-	t_rule		rule;
+	t_rule	*rule;
 
+	rule = malloc(sizeof(rule));
 	if (ac != 5 && ac != 6)
 		return (-1);
-	if (rule_init(ac, av, &rule) == -1)
+	if (rule_init(ac, av, rule) == -1)
 		return (-1);
 	if (philo_life(rule) == -1)
 		return (-1);
-	return (0);
+	while (1)
+	{
+		if (rule->died > 1)
+			return (0);
+	}
 }

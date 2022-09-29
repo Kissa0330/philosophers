@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:28:19 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/29 21:30:28 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/29 22:12:11 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	rule_init(int ac, char *av[], t_rule *rule)
 	}
 	else
 		rule->must_eat = -1;
+	rule->died = 0;
 	return (0);
 }
 

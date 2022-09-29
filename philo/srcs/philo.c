@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:17:31 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/29 21:54:09 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/29 22:10:03 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ int	create_thread(t_philo philo)
 	return (0);
 }
 
-int	philo_life(t_rule rule)
+int	philo_life(t_rule *rule)
 {
 	t_philo	*philo;
 	size_t	i;
 	int		*forks;
 
 	i = 0;
-	forks = init_forks(rule.n_o_p);
-	philo = malloc(sizeof(t_philo) * rule.n_o_p);
+	forks = init_forks(rule->n_o_p);
+	philo = malloc(sizeof(t_philo) * rule->n_o_p);
 	if (philo == NULL)
 		return (-1);
-	while (i < rule.n_o_p)
+	while (i < rule->n_o_p)
 	{
 		philo[i].num = i + 1;
 		philo[i].rule = rule;
