@@ -6,26 +6,47 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/29 22:12:27 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/29 22:28:19 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
+void	check_dead(t_philo *philo)
+{
+	while (1)
+	{
+		if (philo->rule->died > 1)
+		{
+			printf("somebody is died! wow! let's free!");
+			free_philos(philo);
+			printf("free is end");
+			return ;
+		}
+	}
+	
+}
+
 int main(int ac, char *av[])
 {
 	t_rule	*rule;
+	t_philo	*philo;
 
-	rule = malloc(sizeof(rule));
 	if (ac != 5 && ac != 6)
 		return (-1);
+	rule = malloc(sizeof(rule));
+	if (rule == NULL)
+		return (-1);
 	if (rule_init(ac, av, rule) == -1)
-		return (-1);
-	if (philo_life(rule) == -1)
-		return (-1);
-	while (1)
 	{
-		if (rule->died > 1)
-			return (0);
+		free(rule);
+		return (-1);
 	}
+	philo = malloc(sizeof(t_philo) * rule->n_o_p);
+	if (philo == NULL)
+		return (-1);
+	if (philo_life(rule, philo) == -1)
+		return (-1);
+	check_dead(philo);
+	return (0);
 }
