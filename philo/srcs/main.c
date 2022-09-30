@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/30 17:37:13 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/30 17:47:36 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ void	check_dead(t_philo *philo)
 			return ;
 		}
 	}
-	
 }
 
-int main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
 	t_rule	*rule;
 	t_philo	*philo;
