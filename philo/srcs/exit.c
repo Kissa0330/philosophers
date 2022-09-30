@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:37:26 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/29 22:29:06 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/30 17:45:48 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_philos(t_philo *philo)
 {
-	size_t	i;
+	// int	i;
 
 	if (philo->forks != NULL)
 		free(philo->forks);

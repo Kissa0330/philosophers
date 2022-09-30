@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:28:19 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/29 22:12:11 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/30 17:46:14 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	rule_init(int ac, char *av[], t_rule *rule)
 
 int	*init_forks(int	num)
 {
-	size_t	i;
-	int		*forks;
+	int	i;
+	int	*forks;
 
 	i = 0;
 	forks = malloc(sizeof(int) * num);

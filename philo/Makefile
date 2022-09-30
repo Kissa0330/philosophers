@@ -1,4 +1,4 @@
-# CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror 
 NAME = philo
 SRCS = srcs/main.c srcs/utils.c srcs/philo.c srcs/eat.c srcs/exit.c srcs/fork.c srcs/init.c srcs/monitor.c srcs/sleep.c
 OBJ = $(SRCS:%.c=%.o)

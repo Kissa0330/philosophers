@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:17:31 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/29 22:30:54 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/09/30 17:40:52 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 int	create_thread(t_philo philo)
 {
-	pthread_t	*monit_handle;
-	pthread_t	*philo_handle;
+	pthread_t	monit_handle;
+	// pthread_t	philo_handle;
 
 	if (pthread_create(&monit_handle, NULL, dead_monit, &philo) != 0)
 		return (-1);
@@ -42,11 +42,12 @@ int	create_thread(t_philo philo)
 
 int	philo_life(t_rule *rule, t_philo *philo)
 {
-	size_t	i;
-	int		*forks;
+	int	i;
+	int	*forks;
 
 	i = 0;
 	forks = init_forks(rule->n_o_p);
+	printf("%d\n", rule->n_o_p);
 	while (i < rule->n_o_p)
 	{
 		philo[i].num = i + 1;
@@ -57,6 +58,7 @@ int	philo_life(t_rule *rule, t_philo *philo)
 			free_philos(philo);
 			return (-1);
 		}
+		i ++;
 	}
 	return (0);
 }
