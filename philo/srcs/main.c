@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/30 17:47:36 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/01 14:56:57 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	check_dead(t_philo *philo)
 	{
 		if (philo->rule->died > 1)
 		{
-			usleep(10);
+			usleep(5000);
 			printf("somebody is died! wow! let's free!\n");
-			free_philos(philo);
+			// free_philos(philo);
 			printf("free is end\n");
 			return ;
 		}

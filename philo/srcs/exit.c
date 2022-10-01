@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:37:26 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/30 17:45:48 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/01 14:32:00 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 void	free_philos(t_philo *philo)
 {
-	// int	i;
+	int	i;
+	int	n_o_p;
 
+	n_o_p = philo->rule->n_o_p;
 	if (philo->forks != NULL)
 		free(philo->forks);
 	if (philo->rule != NULL)
 		free(philo->rule);
-	// while (i < philo->rule.n_o_p)
+	i = 0;
+	free(philo);
+	// while (i < n_o_p)
 	// {
 	// 	i ++;
 	// }

@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:01:45 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/30 17:45:34 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/01 15:00:18 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ typedef struct s_rule {
 }				t_rule;
 
 typedef struct s_philo {
-	t_rule	*rule;
-	int		num;
-	int		*forks;
-	int		*eat_time;
+	t_rule			*rule;
+	int				num;
+	int				*forks;
+	int				eat_time;
+	pthread_mutex_t	monit_mutex;
 }				t_philo;
 
 int		rule_init(int ac, char *av[], t_rule *rule);
