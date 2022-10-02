@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:28:19 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/02 19:04:19 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/02 19:19:10 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	rule_init(int ac, char *av[], t_rule *rule)
 	return (0);
 }
 
-int		philo_init(t_rule *rule)
+int	philo_init(t_rule *rule)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ int		philo_init(t_rule *rule)
 	while (i < rule->philo_num)
 	{
 		rule->philo[i].num = i;
-		rule->philo[i].ptr_rule= rule;
+		rule->philo[i].ptr_rule = rule;
 		i ++;
 	}
 	return (0);

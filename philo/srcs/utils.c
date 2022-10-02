@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:25 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/02 19:09:14 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/02 19:18:02 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ long long	get_timestamp(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void output_log(int type, int ph_num, t_rule *rule)
+void	output_log(int type, int ph_num, t_rule *rule)
 {
-	if (pthread_mutex_lock(&(rule->mutex_writing)) != 0);
+	if (pthread_mutex_lock(&(rule->mutex_writing)) != 0)
 		return ;
 	if (type == TYPE_FORK)
 		printf("%lld %d has taken a fork\n", get_timestamp(), ph_num);
@@ -34,11 +34,11 @@ void output_log(int type, int ph_num, t_rule *rule)
 		printf("%lld %d is thinking\n", get_timestamp(), ph_num);
 	else if (type == TYPE_DIED)
 		printf("%lld %d died\n", get_timestamp(), ph_num);
-	if (pthread_mutex_unlock(&(rule->mutex_writing)) != 0);
+	if (pthread_mutex_unlock(&(rule->mutex_writing)) != 0)
 		return ;
 }
 
-static int overflow(int negativeflag)
+static int	overflow(int negativeflag)
 {
 	if (negativeflag == -1)
 		return (0);
@@ -46,14 +46,15 @@ static int overflow(int negativeflag)
 		return (-1);
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int negativeflag;
-	unsigned int num;
+	int				negativeflag;
+	unsigned int	num;
 
 	num = 0;
 	negativeflag = 1;
-	while (*str == ' ' || *str == '\t' || *str == '\f' || *str == '\r' || *str == '\n' || *str == '\v')
+	while (*str == ' ' || *str == '\t' || *str == '\f' || *str == '\r'
+		|| *str == '\n' || *str == '\v')
 		str++;
 	if (*str == '+' || *str == '-')
 	{
