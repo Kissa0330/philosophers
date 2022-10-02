@@ -6,47 +6,59 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/01 14:56:57 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/02 19:15:50 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	check_dead(t_philo *philo)
+static int	create_monitor_thread(t_rule *rule)
 {
-	while (1)
+	pthread_t		thread;
+	int				i;
+
+	i = 0;
+	while (i < rule->philo_num)
 	{
-		if (philo->rule->died > 1)
-		{
-			usleep(5000);
-			printf("somebody is died! wow! let's free!\n");
-			// free_philos(philo);
-			printf("free is end\n");
-			return ;
-		}
+		if (pthread_create(&thread, NULL, dead_monitor, &rule->philo[i]) != 0)
+			return (1);
+		pthread_detach(thread);
+		i ++;
 	}
+	return (0);
+}
+
+static int	create_philo_thread(t_rule *rule)
+{
+	pthread_t		thread;
+	int				i;
+
+	i = 0;
+	while (i < rule->philo_num)
+	{
+		if (pthread_create(&thread, NULL, philo_life, &rule->philo[i]) != 0)
+			return (1);
+		pthread_detach(thread);
+		i ++;
+	}
+	return (0);
 }
 
 int	main(int ac, char *av[])
 {
-	t_rule	*rule;
-	t_philo	*philo;
+	t_rule	rule;
 
 	if (ac != 5 && ac != 6)
 		return (-1);
-	rule = malloc(sizeof(rule));
-	if (rule == NULL)
+	if (rule_init(ac, av, &rule) == -1)
 		return (-1);
-	if (rule_init(ac, av, rule) == -1)
-	{
-		free(rule);
+	if (philo_init(&rule) == -1)
 		return (-1);
-	}
-	philo = malloc(sizeof(t_philo) * rule->n_o_p);
-	if (philo == NULL)
+	if (create_monitor_thread(&rule) == -1)
 		return (-1);
-	if (philo_life(rule, philo) == -1)
+	if (create_philo_thread(&rule) == -1)
 		return (-1);
-	check_dead(philo);
+	pthread_mutex_lock(&(rule.mutex_dead));
+	pthread_mutex_unlock(&(rule.mutex_dead));
 	return (0);
 }

@@ -6,31 +6,36 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:25 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/09/30 17:51:18 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/02 19:09:14 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void output_log(int type, int ph_num)
+long long	get_timestamp(void)
 {
-	struct timeval			tv;
-	__darwin_time_t			sec; /* seconds */
-	__darwin_suseconds_t	usec;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	sec = tv.tv_sec;
-	usec = tv.tv_usec / 1000;
-	if (type == 1)
-		printf("%ld%d %d has taken a fork\n", sec, usec, ph_num);
-	else if (type == 2)
-		printf("%ld%d %d is eating\n", sec, usec, ph_num);
-	else if (type == 3)
-		printf("%ld%d %d is sleeping\n", sec, usec, ph_num);
-	else if (type == 4)
-		printf("%ld%d %d is thinking\n", sec, usec, ph_num);
-	else if (type == 5)
-		printf("%ld%d %d died\n", sec, usec, ph_num);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void output_log(int type, int ph_num, t_rule *rule)
+{
+	if (pthread_mutex_lock(&(rule->mutex_writing)) != 0);
+		return ;
+	if (type == TYPE_FORK)
+		printf("%lld %d has taken a fork\n", get_timestamp(), ph_num);
+	else if (type == TYPE_EAT)
+		printf("%lld %d is eating\n", get_timestamp(), ph_num);
+	else if (type == TYPE_SLEEP)
+		printf("%lld %d is sleeping\n", get_timestamp(), ph_num);
+	else if (type == TYPE_THINK)
+		printf("%lld %d is thinking\n", get_timestamp(), ph_num);
+	else if (type == TYPE_DIED)
+		printf("%lld %d died\n", get_timestamp(), ph_num);
+	if (pthread_mutex_unlock(&(rule->mutex_writing)) != 0);
+		return ;
 }
 
 static int overflow(int negativeflag)

@@ -6,60 +6,39 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:17:31 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/01 15:03:24 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/02 19:13:18 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-// void	philo_cycle(t_philo *philo)
-// {
-// 	while (1)
-// 	{
-// 		if (philo->num % 2 == 1)
-// 			usleep(200);
-// 		take_fork();
-// 		eat_pasta();
-// 		get_sleep();
-// 	}
-// }
-
-int	create_thread(t_philo *philo)
+void	take_fork(t_philo *philo)
 {
-	pthread_t	monit_handle;
-	// pthread_t	philo_handle;
-
-	// if (pthread_mutex_init(&(philo.monit_mutex), NULL) != 0)
-	// 	return (-1);
-	if (pthread_create(&monit_handle, NULL, dead_monit, philo) != 0)
-		return (-1);
-	if (pthread_detach(monit_handle) != 0)
-		return (-1);
-	// if (pthread_create(&philo_handle, NULL, philo_cycle, &philo) != 0)
-	// 	return (-1);
-	// if (pthread_detach(philo_handle) != 0)
-	// 	return (-1);
-	return (0);
+	
 }
 
-int	philo_life(t_rule *rule, t_philo *philo)
+void	eat_pasta(t_philo *philo)
 {
-	int	i;
-	int	*forks;
+	
+}
 
-	i = 0;
-	forks = init_forks(rule->n_o_p);
-	while (i < rule->n_o_p)
+void	get_sleep(t_philo *philo)
+{
+	
+}
+
+int	philo_life(void *philo_ptr)
+{
+	t_philo *philo;
+	
+	philo = philo_ptr;
+	if (philo->id % 2 != 0)
+		usleep(1000);
+	while (1)
 	{
-		philo[i].num = i + 1;
-		philo[i].rule = rule;
-		philo[i].forks = forks;
-		if (create_thread(&philo[i]) == -1)
-		{
-			free_philos(philo);
-			return (-1);
-		}
-		i ++;
+		eat_pasta(philo);
+		get_sleep(philo);
+		output_log(TYPE_THINK, philo->forks, philo->ptr_rule);
 	}
 	return (0);
 }

@@ -1,7 +1,8 @@
 CFLAGS = -Wall -Wextra -Werror 
 NAME = philo
-SRCS = srcs/main.c srcs/utils.c srcs/philo.c srcs/eat.c srcs/exit.c srcs/fork.c srcs/init.c srcs/monitor.c srcs/sleep.c
+SRCS = main.c utils.c philo.c init.c monitor.c
 OBJ = $(SRCS:%.c=%.o)
+VPATH = srcs
 
 all: $(NAME)
 
