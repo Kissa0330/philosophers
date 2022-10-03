@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/03 22:27:54 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/03 22:53:24 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	create_monitor_thread(t_rule *rule)
 	pthread_t		thread;
 	int				i;
 
-	i = 0;
-	while (i < rule->philo_num)
+	i = 1;
+	while (i <= rule->philo_num)
 	{
 		if (pthread_create(&thread, NULL, dead_monitor, &rule->philo[i]) != 0)
 			return (1);
@@ -33,8 +33,8 @@ static int	create_philo_thread(t_rule *rule)
 	pthread_t		thread;
 	int				i;
 
-	i = 0;
-	while (i < rule->philo_num)
+	i = 1;
+	while (i <= rule->philo_num)
 	{
 		if (pthread_create(&thread, NULL, philo_life, &rule->philo[i]) != 0)
 			return (1);

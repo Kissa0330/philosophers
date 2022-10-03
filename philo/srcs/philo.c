@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:17:31 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/03 22:44:03 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/03 22:52:33 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	take_fork(t_philo *philo)
 	t_rule *rule;
 
 	rule = philo->rule_ptr;
-	pthread_mutex_lock(&(rule->forks[philo->num]));
+	pthread_mutex_lock(&(rule->forks[philo->num - 1]));
 	output_log(TYPE_FORK, philo->num, rule);
-	pthread_mutex_unlock(&(rule->forks[philo->num]));
+	pthread_mutex_unlock(&(rule->forks[philo->num - 1]));
 	if (philo->num == rule->philo_num)
 	{
 		pthread_mutex_lock(&(rule->forks[0]));
@@ -28,9 +28,9 @@ static void	take_fork(t_philo *philo)
 	}
 	else
 	{
-		pthread_mutex_lock(&(rule->forks[philo->num + 1]));
+		pthread_mutex_lock(&(rule->forks[philo->num]));
 		output_log(TYPE_FORK, philo->num, rule);
-		pthread_mutex_unlock(&(rule->forks[philo->num + 1]));
+		pthread_mutex_unlock(&(rule->forks[philo->num]));
 	}
 }
 
