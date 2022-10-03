@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 01:33:04 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 01:54:19 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static int	create_philo_thread(t_rule *rule)
 	i = 2;
 	while (i <= rule->philo_num)
 	{
-		printf("%d\n", i);
 		if (pthread_create(&thread, NULL, philo_life, &rule->philo[i]) != 0)
 			return (1);
 		pthread_detach(thread);
@@ -45,7 +44,6 @@ static int	create_philo_thread(t_rule *rule)
 	i = 1;
 	while (i <= rule->philo_num)
 	{
-		printf("%d\n", i);
 		if (pthread_create(&thread, NULL, philo_life, &rule->philo[i]) != 0)
 			return (1);
 		pthread_detach(thread);

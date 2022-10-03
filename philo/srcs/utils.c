@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:25 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/02 19:18:02 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 01:47:19 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ long long	get_timestamp(void)
 
 void	output_log(int type, int ph_num, t_rule *rule)
 {
-	if (pthread_mutex_lock(&(rule->mutex_writing)) != 0)
-		return ;
+	pthread_mutex_lock(&(rule->mutex_writing));
 	if (type == TYPE_FORK)
 		printf("%lld %d has taken a fork\n", get_timestamp(), ph_num);
 	else if (type == TYPE_EAT)
@@ -34,8 +33,7 @@ void	output_log(int type, int ph_num, t_rule *rule)
 		printf("%lld %d is thinking\n", get_timestamp(), ph_num);
 	else if (type == TYPE_DIED)
 		printf("%lld %d died\n", get_timestamp(), ph_num);
-	if (pthread_mutex_unlock(&(rule->mutex_writing)) != 0)
-		return ;
+	pthread_mutex_unlock(&(rule->mutex_writing));
 }
 
 static int	overflow(int negativeflag)
