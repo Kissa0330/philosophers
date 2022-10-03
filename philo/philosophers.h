@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:01:45 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/03 23:01:14 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/03 23:19:30 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 typedef struct s_philo {
 	int					num;
 	long long			eat_time;
-	pthread_mutex_t		monit_mutex;
 	struct s_rule		*rule_ptr;
 }				t_philo;
 
@@ -34,7 +33,6 @@ typedef struct s_rule {
 	int					must_eat;
 	int					eat_num;
 	pthread_mutex_t		mutex_eat;
-	pthread_mutex_t		mutex_eat_time;
 	pthread_mutex_t		mutex_dead;
 	pthread_mutex_t		mutex_writing;
 	pthread_mutex_t		forks[250];
