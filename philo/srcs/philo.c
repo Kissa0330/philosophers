@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:17:31 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 01:53:56 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 02:22:20 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,25 @@
 
 static void	take_fork(t_philo *philo)
 {
-	t_rule *rule;
+	t_rule	*rule;
 
 	rule = philo->rule_ptr;
-	pthread_mutex_lock(&(rule->forks[philo->num - 1]));
+	pthread_mutex_lock(&(rule->forks[philo->left_fork_id]));
 	output_log(TYPE_FORK, philo->num, rule);
 	philo->fork++;
-	pthread_mutex_unlock(&(rule->forks[philo->num - 1]));
-	if (philo->num == rule->philo_num && rule->philo_num != 1)
+	pthread_mutex_unlock(&(rule->forks[philo->left_fork_id]));
+	if (rule->philo_num != 1)
 	{
-		pthread_mutex_lock(&(rule->forks[0]));
+		pthread_mutex_lock(&(rule->forks[philo->right_fork_id]));
 		output_log(TYPE_FORK, philo->num, rule);
 		philo->fork++;
-		pthread_mutex_unlock(&(rule->forks[0]));
-	}
-	else if (rule->philo_num != 1)
-	{
-		pthread_mutex_lock(&(rule->forks[0]));
-		output_log(TYPE_FORK, philo->num, rule);
-		philo->fork++;
-		pthread_mutex_unlock(&(rule->forks[philo->num]));
+		pthread_mutex_unlock(&(rule->forks[philo->right_fork_id]));
 	}
 }
 
 static int	eat_pasta(t_philo *philo)
 {
-	t_rule *rule;
+	t_rule	*rule;
 
 	rule = philo->rule_ptr;
 	philo->fork = 0;
@@ -60,10 +53,10 @@ static int	eat_pasta(t_philo *philo)
 
 static void	get_sleep(t_philo *philo)
 {
-	t_rule *rule;
+	t_rule	*rule;
 
 	rule = philo->rule_ptr;
-	usleep((rule->t_sleep - 10)* 1000);
+	usleep((rule->t_sleep - 10) * 1000);
 	output_log(TYPE_SLEEP, philo->num, rule);
 }
 
@@ -76,7 +69,7 @@ void	*philo_life(void *philo_ptr)
 		usleep(200);
 	while (1)
 	{
-		if(eat_pasta(philo) == 0)
+		if (eat_pasta(philo) == 0)
 		{
 			get_sleep(philo);
 			output_log(TYPE_THINK, philo->num, philo->rule_ptr);
