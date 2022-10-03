@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:17:31 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/03 21:56:30 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/03 22:44:03 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ static void	eat_pasta(t_philo *philo)
 	rule = philo->rule_ptr;
 	take_fork(philo);
 	usleep(rule->t_eat);
+	pthread_mutex_lock(&(rule->mutex_eat_time));
 	rule->eat_num ++;
+	pthread_mutex_unlock(&(rule->mutex_eat_time));
 	output_log(TYPE_EAT, philo->num, rule);
 	philo->eat_time = get_timestamp();
 }
@@ -66,7 +68,7 @@ void	*philo_life(void *philo_ptr)
 	{
 		eat_pasta(philo);
 		get_sleep(philo);
-		output_log(TYPE_THINK, philo->forks, philo->rule_ptr);
+		output_log(TYPE_THINK, philo->num, philo->rule_ptr);
 	}
 	return (NULL);
 }

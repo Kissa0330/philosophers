@@ -6,11 +6,27 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:28:19 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/02 20:38:28 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/03 22:43:34 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
+
+void	rule_mutex_init(t_rule *rule)
+{
+	int	i;
+
+	i = 0;
+	pthread_mutex_init(&(rule->mutex_eat_time), NULL);
+	pthread_mutex_init(&(rule->mutex_dead), NULL);
+	pthread_mutex_init(&(rule->mutex_writing), NULL);
+	while (i < rule->philo_num)
+	{
+		pthread_mutex_init(&(rule->forks[i]), NULL);
+		i++;
+	}
+	pthread_mutex_lock(&(rule->mutex_dead));
+}
 
 int	rule_init(int ac, char *av[], t_rule *rule)
 {
@@ -34,6 +50,7 @@ int	rule_init(int ac, char *av[], t_rule *rule)
 	}
 	else
 		rule->must_eat = -1;
+	rule_mutex_init(rule);
 	return (0);
 }
 
@@ -47,6 +64,7 @@ int	philo_init(t_rule *rule)
 		rule->philo[i].num = i;
 		rule->philo[i].rule_ptr = rule;
 		rule->philo[i].eat_time = get_timestamp();
+		pthread_mutex_init(&(rule->philo[i].monit_mutex), NULL);
 		i ++;
 	}
 	return (0);
