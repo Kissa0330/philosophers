@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:28:19 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/03 22:53:13 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/03 23:02:54 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	rule_mutex_init(t_rule *rule)
 	int	i;
 
 	i = 0;
+	pthread_mutex_init(&(rule->mutex_eat), NULL);
 	pthread_mutex_init(&(rule->mutex_eat_time), NULL);
 	pthread_mutex_init(&(rule->mutex_dead), NULL);
 	pthread_mutex_init(&(rule->mutex_writing), NULL);
