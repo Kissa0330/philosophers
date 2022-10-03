@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/03 22:53:24 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 01:33:04 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,23 @@ static int	create_philo_thread(t_rule *rule)
 	pthread_t		thread;
 	int				i;
 
-	i = 1;
+	i = 2;
 	while (i <= rule->philo_num)
 	{
+		printf("%d\n", i);
 		if (pthread_create(&thread, NULL, philo_life, &rule->philo[i]) != 0)
 			return (1);
 		pthread_detach(thread);
-		i ++;
+		i += 2;
+	}
+	i = 1;
+	while (i <= rule->philo_num)
+	{
+		printf("%d\n", i);
+		if (pthread_create(&thread, NULL, philo_life, &rule->philo[i]) != 0)
+			return (1);
+		pthread_detach(thread);
+		i += 2;
 	}
 	return (0);
 }
@@ -54,9 +64,9 @@ int	main(int ac, char *av[])
 		return (-1);
 	if (philo_init(&rule) == -1)
 		return (-1);
-	if (create_monitor_thread(&rule) == -1)
-		return (-1);
 	if (create_philo_thread(&rule) == -1)
+		return (-1);
+	if (create_monitor_thread(&rule) == -1)
 		return (-1);
 	pthread_mutex_lock(&(rule.mutex_dead));
 	pthread_mutex_unlock(&(rule.mutex_dead));

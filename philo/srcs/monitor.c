@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:47:28 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/03 23:35:24 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 01:00:23 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ void	*dead_monitor(void *philo_ptr)
 
 	philo = philo_ptr;
 	rule = philo->rule_ptr;
-	printf("%d\n", rule->t_eat);
+	// printf("%d\n", rule->t_eat);
 	while (1)
 	{
 		pthread_mutex_lock(&(rule->mutex_eat));
+		// usleep(10);
 		time = get_timestamp();
 		// printf("%lld\n",time - philo->eat_time);
-		if (time - philo->eat_time >= rule->t_death)
+		if (time - philo->eat_time > rule->t_death)
 		{
 			output_log(TYPE_DIED, philo->num, rule);
 			break ;
