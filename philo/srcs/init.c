@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:28:19 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 18:06:01 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 18:52:02 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int	philo_init(t_rule *rule)
 		rule->philo[i].num = i;
 		rule->philo[i].fork = 0;
 		rule->philo[i].right_fork_id = rule->philo[i].num;
-		rule->philo[i].left_fork_id = (rule->philo[i].num + 1) % rule->philo_num;
+		rule->philo[i].left_fork_id = (rule->philo[i].num + 1)
+			% rule->philo_num;
 		rule->philo[i].rule_ptr = rule;
 		rule->philo[i].eat_time = get_timestamp();
 		pthread_mutex_init(&(rule->philo[i].mutex_eat_time), NULL);
