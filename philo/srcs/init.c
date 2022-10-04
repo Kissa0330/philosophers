@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:28:19 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 18:52:02 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/05 02:00:55 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	rule_mutex_init(t_rule *rule)
 
 	i = 0;
 	pthread_mutex_init(&(rule->mutex_eat_num), NULL);
-	pthread_mutex_init(&(rule->mutex_dead), NULL);
+	pthread_mutex_init(&(rule->mutex_finish), NULL);
 	pthread_mutex_init(&(rule->mutex_dead_log), NULL);
 	pthread_mutex_init(&(rule->mutex_writing), NULL);
 	while (i < rule->philo_num)
@@ -26,7 +26,7 @@ void	rule_mutex_init(t_rule *rule)
 		pthread_mutex_init(&(rule->forks[i]), NULL);
 		i++;
 	}
-	pthread_mutex_lock(&(rule->mutex_dead));
+	pthread_mutex_lock(&(rule->mutex_finish));
 }
 
 int	rule_init(int ac, char *av[], t_rule *rule)

@@ -6,13 +6,13 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:47:28 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 18:46:58 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/05 02:01:17 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	*dead_monitor(void *philo_ptr)
+void	*monitor(void *philo_ptr)
 {
 	t_philo		*philo;
 	t_rule		*rule;
@@ -35,8 +35,8 @@ void	*dead_monitor(void *philo_ptr)
 		if (rule->eat_num >= rule->must_eat && rule->must_eat != -1)
 			break ;
 		pthread_mutex_unlock(&(rule->mutex_eat_num));
-		usleep(500);
+		usleep(300);
 	}
-	pthread_mutex_unlock(&(rule->mutex_dead));
+	pthread_mutex_unlock(&(rule->mutex_finish));
 	return (NULL);
 }

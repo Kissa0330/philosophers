@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 18:21:46 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/05 02:00:17 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	create_monitor_thread(t_rule *rule)
 	i = 0;
 	while (i < rule->philo_num)
 	{
-		if (pthread_create(&thread, NULL, dead_monitor, &rule->philo[i]) != 0)
+		if (pthread_create(&thread, NULL, monitor, &rule->philo[i]) != 0)
 			return (1);
 		pthread_detach(thread);
 		i ++;
@@ -66,9 +66,9 @@ int	main(int ac, char *av[])
 		return (-1);
 	if (create_monitor_thread(&rule) == -1)
 		return (-1);
-	pthread_mutex_lock(&(rule.mutex_dead));
+	pthread_mutex_lock(&(rule.mutex_finish));
 	pthread_mutex_lock(&(rule.mutex_writing));
 	pthread_mutex_unlock(&(rule.mutex_writing));
-	pthread_mutex_unlock(&(rule.mutex_dead));
+	pthread_mutex_unlock(&(rule.mutex_finish));
 	return (0);
 }
