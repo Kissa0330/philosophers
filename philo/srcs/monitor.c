@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:47:28 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 18:02:57 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 18:06:44 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	*dead_monitor(void *philo_ptr)
 		time = get_timestamp();
 		if (time - philo->eat_time > rule->t_death)
 		{
+			pthread_mutex_lock(&(rule->mutex_dead_log));
 			output_log(TYPE_DIED, philo->num, rule);
 			break ;
 		}

@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:01:45 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 11:04:25 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 18:05:19 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_rule {
 	int					eat_num;
 	pthread_mutex_t		mutex_eat_num;
 	pthread_mutex_t		mutex_dead;
+	pthread_mutex_t		mutex_dead_log;
 	pthread_mutex_t		mutex_writing;
 	pthread_mutex_t		forks[250];
 	t_philo				philo[250];
