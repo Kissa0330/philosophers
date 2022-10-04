@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:28:19 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 02:21:48 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 11:31:24 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	rule_mutex_init(t_rule *rule)
 	int	i;
 
 	i = 0;
-	pthread_mutex_init(&(rule->mutex_eat), NULL);
+	pthread_mutex_init(&(rule->mutex_eat_num), NULL);
 	pthread_mutex_init(&(rule->mutex_dead), NULL);
 	pthread_mutex_init(&(rule->mutex_writing), NULL);
 	while (i < rule->philo_num)
@@ -65,9 +65,9 @@ int	philo_init(t_rule *rule)
 		rule->philo[i].fork = 0;
 		rule->philo[i].right_fork_id = rule->philo[i].num;
 		rule->philo[i].left_fork_id = (rule->philo[i].num + 1) % rule->philo_num;
-		printf("id == %d, %d, %d\n",i,rule->philo[i].right_fork_id, rule->philo[i].left_fork_id);
 		rule->philo[i].rule_ptr = rule;
 		rule->philo[i].eat_time = get_timestamp();
+		pthread_mutex_init(&(rule->philo[i].mutex_eat_time), NULL);
 		i ++;
 	}
 	return (0);
