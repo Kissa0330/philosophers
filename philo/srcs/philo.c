@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:17:31 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 11:51:22 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 18:01:55 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static int	eat_pasta(t_philo *philo)
 		if (rule->must_eat < rule->eat_num && rule->must_eat != -1)
 			usleep(100);
 		output_log(TYPE_EAT, philo->num, rule);
-		usleep((rule->t_eat) * 1000);
 		philo->eat_time = get_timestamp();
+		usleep((rule->t_eat) * 1000);
 		pthread_mutex_unlock(&(philo->mutex_eat_time));
 		pthread_mutex_unlock(&(rule->forks[philo->left_fork_id]));
 		pthread_mutex_unlock(&(rule->forks[philo->right_fork_id]));
@@ -62,7 +62,6 @@ static void	get_sleep(t_philo *philo)
 	rule = philo->rule_ptr;
 	usleep((rule->t_sleep) * 1000);
 	output_log(TYPE_SLEEP, philo->num, rule);
-	usleep(3000);
 }
 
 void	*philo_life(void *philo_ptr)

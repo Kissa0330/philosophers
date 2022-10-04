@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:47:28 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 11:44:01 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 18:02:57 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	*dead_monitor(void *philo_ptr)
 		if (rule->eat_num >= rule->must_eat && rule->must_eat != -1)
 			break ;
 		pthread_mutex_unlock(&(rule->mutex_eat_num));
+		usleep(1000);
 	}
 	pthread_mutex_unlock(&(rule->mutex_dead));
 	return (NULL);
