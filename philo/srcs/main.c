@@ -6,7 +6,7 @@
 /*   By: takanoraika <takanoraika@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:02:23 by takanoraika       #+#    #+#             */
-/*   Updated: 2022/10/04 11:31:17 by takanoraika      ###   ########.fr       */
+/*   Updated: 2022/10/04 11:47:51 by takanoraika      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	main(int ac, char *av[])
 	if (create_monitor_thread(&rule) == -1)
 		return (-1);
 	pthread_mutex_lock(&(rule.mutex_dead));
+	pthread_mutex_lock(&(rule.mutex_writing));
+	pthread_mutex_unlock(&(rule.mutex_writing));
 	pthread_mutex_unlock(&(rule.mutex_dead));
 	return (0);
 }
